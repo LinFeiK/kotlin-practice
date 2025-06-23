@@ -1,7 +1,10 @@
-package org.example
+import kotlin.math.max
+import kotlin.text.iterator
 
 fun main() {
 //    arrays()
+
+    classes()
 
 //    conditionals()
 
@@ -71,6 +74,57 @@ fun arrays() {
     }
 
     println(numbers.contentToString())
+}
+
+fun classes() {
+    val rect1 = RectangleData(5f, 10f)
+    println("Rect 1 has a width of ${rect1.width} and a height of ${rect1.height}.")
+    println("The area is ${rect1.area} and the diagonal is ${rect1.diagonal}.")
+
+    val rect2 = RectangleData(7f, 9f)
+    println("Rect 2 has a width of ${rect2.width} and a height of ${rect2.height}.")
+    println("The area is ${rect2.area} and the diagonal is ${rect2.diagonal}.")
+
+    val maxArea = maxRectArea(rect1, rect2)
+    println("The rectangle with the maximum area is the one with area $maxArea.\n")
+
+
+    // comparing == for data classes vs non-data classes
+    rect2.width = 5f
+    rect2.height = 10f
+    println("Rect 2's width is now ${rect2.width} and height is now ${rect2.height}.")
+    // true for data classes -> compares the data/fields
+    println("Data classes: Are Rect 1 and Rect 2 the same? ${rect1 == rect2}.\n")
+
+    val rect3 = RectangleNotData(9f, 11f)
+    val rect4 = RectangleNotData(9f, 11f)
+    println("Rect 3 has ${rect3.width} width, ${rect3.height} height.")
+    println("Rect 4 has ${rect4.width} width, ${rect4.height} height.")
+    // false for non-data classes -> compares the references
+    println("Non-data classes: Are Rect 3 and Rect 4 the same? ${rect3 == rect4}.\n")
+
+
+    // comparing toString for data classes vs non-data classes
+    println("Data class Rect 1: $rect1") // nice format
+    println("Non-data class Rect 3: $rect3\n") // address in memory
+
+
+    // copy function (only for data classes)
+    // keeps everything the same as the original
+    // if we want to change one or more field value, pass the changed value as a parameter to copy()
+    val rect5 = rect2.copy(
+        width = 6f
+    )
+    println("Rect 5 copied from Rect 2 except with width of ${rect5.width}. The height is ${rect5.height}.\n")
+
+
+    // circles
+    val circle = Circle(6f)
+    println("$circle with area ${circle.area} and circumference ${circle.circumference}.")
+}
+
+fun maxRectArea(rect1: RectangleData, rect2: RectangleData): Float {
+    return max(rect1.area, rect2.area)
 }
 
 fun conditionals() {

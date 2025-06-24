@@ -4,7 +4,7 @@ import kotlin.text.iterator
 fun main() {
 //    arrays()
 
-    classes()
+//    classes()
 
 //    conditionals()
 
@@ -33,6 +33,7 @@ fun main() {
     // named parameters
 //    getValidIntValue(warningMessage = "Please enter a number: ")
 
+    interfaces()
 
 //    lists()
 
@@ -77,11 +78,11 @@ fun arrays() {
 }
 
 fun classes() {
-    val rect1 = RectangleData(5f, 10f)
+    val rect1 = RectangleData(5.0, 10.0)
     println("Rect 1 has a width of ${rect1.width} and a height of ${rect1.height}.")
     println("The area is ${rect1.area} and the diagonal is ${rect1.diagonal}.")
 
-    val rect2 = RectangleData(7f, 9f)
+    val rect2 = RectangleData(7.0, 9.0)
     println("Rect 2 has a width of ${rect2.width} and a height of ${rect2.height}.")
     println("The area is ${rect2.area} and the diagonal is ${rect2.diagonal}.")
 
@@ -90,8 +91,8 @@ fun classes() {
 
 
     // comparing == for data classes vs non-data classes
-    rect2.width = 5f
-    rect2.height = 10f
+    rect2.width = 5.0
+    rect2.height = 10.0
     println("Rect 2's width is now ${rect2.width} and height is now ${rect2.height}.")
     // true for data classes -> compares the data/fields
     println("Data classes: Are Rect 1 and Rect 2 the same? ${rect1 == rect2}.\n")
@@ -113,17 +114,17 @@ fun classes() {
     // keeps everything the same as the original
     // if we want to change one or more field value, pass the changed value as a parameter to copy()
     val rect5 = rect2.copy(
-        width = 6f
+        width = 6.0
     )
     println("Rect 5 copied from Rect 2 except with width of ${rect5.width}. The height is ${rect5.height}.\n")
 
 
     // circles
-    val circle = Circle(6f)
+    val circle = Circle(6.0)
     println("$circle with area ${circle.area} and circumference ${circle.circumference}.")
 }
 
-fun maxRectArea(rect1: RectangleData, rect2: RectangleData): Float {
+fun maxRectArea(rect1: RectangleData, rect2: RectangleData): Double {
     return max(rect1.area, rect2.area)
 }
 
@@ -308,6 +309,26 @@ fun String.myFilter(predicate: Char.() -> Boolean): String {
                 append(c)
             }
         }
+    }
+}
+
+fun interfaces() {
+    val rect1 = RectangleData(7.0, 10.0)
+
+    println("Rect 1 with width ${rect1.width} and height ${rect1.height}. Perimeter is ${rect1.perimeter}. " +
+            "Area is ${rect1.area}.")
+
+    val circle1 = Circle(9.0)
+    println("Circle with radius ${circle1.radius} and circumference ${circle1.circumference}. " +
+            "Area is ${circle1.area}.")
+
+    val sumAreas = sumAreas(rect1, circle1)
+    println("Sum of their areas: $sumAreas")
+}
+
+fun sumAreas(vararg shapes: Shape): Double {
+    return shapes.sumOf { currentShape ->
+        currentShape.area
     }
 }
 

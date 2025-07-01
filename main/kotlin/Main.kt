@@ -8,7 +8,7 @@ fun main() {
 //    classes()
 //    abstractOrOpenClasses()
 //    enumClasses()
-    objectClasses()
+//    objectClasses()
 
 //    conditionals()
 
@@ -36,6 +36,9 @@ fun main() {
 
     // named parameters
 //    getValidIntValue(warningMessage = "Please enter a number: ")
+
+
+    generics()
 
 //    interfaces()
 
@@ -80,7 +83,6 @@ fun arrays() {
 
     println(numbers.contentToString())
 }
-
 
 fun classes() {
     val rect1 = RectangleData(5.0, 10.0)
@@ -128,6 +130,7 @@ fun classes() {
     val circle = Circle(6.0)
     println("$circle with area ${circle.area} and circumference ${circle.circumference}.")
 }
+
 
 fun maxRectArea(rect1: RectangleData, rect2: RectangleData): Double {
     return max(rect1.area, rect2.area)
@@ -187,7 +190,6 @@ fun objectClasses() {
     println(FixedSizeSquare)
     println("${FixedSizeSquare.area} area, ${FixedSizeSquare.perimeter} perimeter.")
 }
-
 
 fun conditionals() {
     print("Enter a number: ")
@@ -256,6 +258,7 @@ fun extensionFunctions() {
     val inputInt = getValidIntValue()
     println("Reversed integer: ${inputInt.reverseIt()}")
 }
+
 
 // Extension function to reverse the letters of a string.
 private fun String.reverseIt(): String {
@@ -373,6 +376,39 @@ fun String.myFilter(predicate: Char.() -> Boolean): String {
             }
         }
     }
+}
+
+
+fun generics() {
+    val strings = listOf(
+        "Hello",
+        "Goodbye",
+        "See you"
+    )
+
+    val filteredStrings = strings.genericFilter { currString ->
+        currString.length > 5
+    }
+
+    println(filteredStrings)
+
+    val nums = listOf(1, 3, 4, 8, 10, 11)
+    val filteredNums = nums.genericFilter {
+        it % 2 == 1
+    }
+    println(filteredNums)
+}
+
+fun <T> List<T>.genericFilter(predicate: (T) -> Boolean): List<T> {
+    val result = mutableListOf<T>()
+    for (element in this) {
+        if (predicate(element)) {
+            result.add(element)
+        }
+    }
+
+    // return something that can't be added to anymore
+    return result.toList()
 }
 
 

@@ -7,7 +7,8 @@ fun main() {
     // Classes
 //    classes()
 //    abstractOrOpenClasses()
-    enumClasses()
+//    enumClasses()
+    objectClasses()
 
 //    conditionals()
 
@@ -43,7 +44,7 @@ fun main() {
 //    loops()
 //    forLoops()
 
-//    operators()
+//    mathOperators()
 
 //    strings()
 
@@ -79,6 +80,7 @@ fun arrays() {
 
     println(numbers.contentToString())
 }
+
 
 fun classes() {
     val rect1 = RectangleData(5.0, 10.0)
@@ -181,6 +183,12 @@ fun greetByCountry(country: Country): String {
     }
 }
 
+fun objectClasses() {
+    println(FixedSizeSquare)
+    println("${FixedSizeSquare.area} area, ${FixedSizeSquare.perimeter} perimeter.")
+}
+
+
 fun conditionals() {
     print("Enter a number: ")
     val input = readln()
@@ -217,6 +225,7 @@ fun conditionals() {
     println(output)
 }
 
+
 fun exceptions() {
     // can be used to assign values
     print("Enter a number: ")
@@ -235,6 +244,7 @@ fun exceptions() {
 
     throw Exception("Custom exception thrown")
 }
+
 
 fun extensionFunctions() {
     print("String to be reversed: ")
@@ -365,6 +375,7 @@ fun String.myFilter(predicate: Char.() -> Boolean): String {
     }
 }
 
+
 fun interfaces() {
     val rect1 = RectangleData(7.0, 10.0)
 
@@ -384,6 +395,7 @@ fun sumAreas(vararg shapes: Shape): Double {
         currentShape.area
     }
 }
+
 
 fun lists() {
     print("How many numbers do you want in the list? ")
@@ -419,6 +431,7 @@ private fun getValidIntValue(warningMessage: String = "Enter a valid integer: ")
 
     return input
 }
+
 
 fun loops() {
     forLoops()
@@ -481,7 +494,6 @@ fun forLoops() {
 
 }
 
-// Called in loops()
 fun whileLoops() {
     var isContinue = "Y"
 
@@ -522,7 +534,8 @@ fun whileLoops() {
     }
 }
 
-fun operators() {
+
+fun mathOperators() {
     var x = 15
 
     // integer vs (at least one) non-integer division
@@ -553,6 +566,7 @@ fun operators() {
     println(4.5.inc()) // 5.5
 }
 
+
 fun strings() {
     // build a reversed string
     val toReverse = "Palindrome"
@@ -565,6 +579,7 @@ fun strings() {
 
     println("Reversed: $finalString")
 }
+
 
 fun userInput() {
     println("Enter a number: ")

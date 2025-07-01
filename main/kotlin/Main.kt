@@ -6,7 +6,8 @@ fun main() {
 
     // Classes
 //    classes()
-    abstractOrOpenClasses()
+//    abstractOrOpenClasses()
+    enumClasses()
 
 //    conditionals()
 
@@ -157,6 +158,26 @@ fun abstractOrOpenClasses() {
             is Dog -> println("This is a Dog named $name.")
         }
         println()
+    }
+}
+
+fun enumClasses() {
+    for (country in Country.entries) {
+        println(greetByCountry(country))
+    }
+
+    println()
+    for (country in CountryWithCode.entries) {
+        println("${country.name}'s code is ${country.code}.")
+    }
+}
+
+fun greetByCountry(country: Country): String {
+    return when(country) {
+        Country.CANADA -> "Hello from Canada!"
+        Country.FRANCE -> "Bonjour from France!"
+        Country.NEW_ZEALAND -> "Hello from New Zealand!"
+        Country.USA -> "Hello from the US!"
     }
 }
 

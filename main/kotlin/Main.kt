@@ -4,7 +4,9 @@ import kotlin.text.iterator
 fun main() {
 //    arrays()
 
+    // Classes
 //    classes()
+    abstractOrOpenClasses()
 
 //    conditionals()
 
@@ -33,7 +35,7 @@ fun main() {
     // named parameters
 //    getValidIntValue(warningMessage = "Please enter a number: ")
 
-    interfaces()
+//    interfaces()
 
 //    lists()
 
@@ -126,6 +128,36 @@ fun classes() {
 
 fun maxRectArea(rect1: RectangleData, rect2: RectangleData): Double {
     return max(rect1.area, rect2.area)
+}
+
+fun abstractOrOpenClasses() {
+    // can't do
+//    animal = Animal()
+
+    // abstract class Animal, open class Cat
+    val animal1: Animal = Cat("Kitty", 3) // works for open classes
+    val animal2: Animal = MaineCoonCat("Minny", 4)
+    val animal3 = Dog("Doggy", 5)
+
+    println(animal1.javaClass) // Cat
+    println(animal2.javaClass) // MaineCoonCat
+    println(animal3.javaClass) // Dog
+
+    val animals = listOf(animal1, animal2, animal3)
+    for (animal in animals) {
+        println(animal.sound)
+        println("Is of class Animal: ${animal is Animal}") // always true, even for animal3
+        println("Is of class Cat: ${animal is Cat}")
+        println("Is of class MaineCoonCat: ${animal is MaineCoonCat}")
+        println("Is of class Dog: ${animal is Dog}")
+
+        val name = animal.name
+        when(animal) {
+            is Cat -> println("This is a ${animal.breed} named $name.")
+            is Dog -> println("This is a Dog named $name.")
+        }
+        println()
+    }
 }
 
 fun conditionals() {
